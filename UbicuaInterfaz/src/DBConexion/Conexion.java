@@ -7,16 +7,13 @@ package DBConexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
  * @author robertomunoz
  */
 public class Conexion {
-    
     static Connection connection = null;
     public static Connection getConnection(){
         if(connection == null){
@@ -29,6 +26,5 @@ public class Conexion {
         }
         return connection;
     }
-    
 }
 
