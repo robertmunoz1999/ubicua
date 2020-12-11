@@ -8,12 +8,16 @@ package DBConexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.*;
 /**
  *
  * @author robertomunoz
  */
+
 public class Conexion {
+    private final Logger logger = Logger.getLogger(Conexion.class.getName());
     static Connection connection = null;
     public static Connection getConnection(){
         if(connection == null){
@@ -25,6 +29,16 @@ public class Conexion {
             }
         }
         return connection;
+    }
+    public void disconnect(){
+        try {
+            connection.close();
+            System.out.println("Desconectado!!");
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "No se ha podido cerrar la conexión",ex);
+        } catch (Exception ex){
+            logger.log(Level.WARNING, "Excepción capturada",ex);
+        }
     }
 }
 

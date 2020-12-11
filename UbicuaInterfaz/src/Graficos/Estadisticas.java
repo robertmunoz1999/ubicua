@@ -70,7 +70,6 @@ public class Estadisticas extends javax.swing.JFrame {
                 "Id cubo", "Id data", "Capacidad", "Metano", "Humo", "Sello temporal"
             }
         ));
-        jTable1.setLocation(new java.awt.Point(500, 200));
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setText("Graficar");

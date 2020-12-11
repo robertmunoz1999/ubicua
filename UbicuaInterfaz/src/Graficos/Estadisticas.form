@@ -104,9 +104,6 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null}&#xa;    },&#xa;    new String [] {&#xa;        &quot;Id cubo&quot;, &quot;Id data&quot;, &quot;Capacidad&quot;, &quot;Metano&quot;, &quot;Humo&quot;, &quot;Sello temporal&quot;&#xa;    }&#xa;)" type="code"/>
             </Property>
-            <Property name="location" type="java.awt.Point" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new java.awt.Point(500, 200)" type="code"/>
-            </Property>
           </Properties>
         </Component>
       </SubComponents>
