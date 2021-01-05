@@ -21,12 +21,15 @@ public class Graficar {
     public DefaultTableModel getCubeData(Integer cube){
         Cliente c = new Cliente();
         String estadisticas=c.consultarCuboGrafica(cube);
-        String arr[] = estadisticas.split(",");
+        String arr[] = estadisticas.split("],");
         DefaultTableModel miModelo = null;
         try{
-            String titulos [] = {"Id cubo", "Referencia data", "Capacidad", "C02", "Metano", "Humo", "Sello temporal"};
+            String titulos [] = {"Id cubo", "Referencia data", "Capacidad", "C02", "Metano", "Humo", "Sello temporal", "Temperatura", "Voltage"};
             miModelo = new DefaultTableModel(null, titulos);
-            miModelo.addRow(arr);
+            for (int i = 0; i < arr.length; i++) {
+                miModelo.addRow(arr[i].split(", "));
+            }
+            //System.out.println(miModelo.getDataVector());
         } catch(Exception ex){
             ex.printStackTrace();
         }

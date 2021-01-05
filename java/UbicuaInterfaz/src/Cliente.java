@@ -80,6 +80,23 @@ public class Cliente {
         
         return respuesta;
     }
+    public String consultarCubos(){
+        String mensaje = "SELECT id FROM cube ORDER BY id ASC";
+        String respuesta="";
+        try {
+            Socket sc = new Socket(HOST, PUERTO);
+            in = new DataInputStream(sc.getInputStream());
+            out = new DataOutputStream(sc.getOutputStream());
+            out.writeUTF(mensaje);
+            respuesta = in.readUTF();
+            sc.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return respuesta;
+    }    
     public String consultarCuboGrafica(Integer id){
         String mensaje = "select * from cube_data_record where id_cube = " + id;
         String respuesta="";
