@@ -24,7 +24,7 @@ public class Graficar {
         String arr[] = estadisticas.split("],");
         DefaultTableModel miModelo = null;
         try{
-            String titulos [] = {"Id cubo", "Referencia data", "Capacidad", "C02", "Metano", "Humo", "Sello temporal", "Temperatura", "Voltage"};
+            String titulos [] = {"Id cubo", "Referencia data", "Capacidad", "C02", "Metano", "Humo", "Sello temporal", "Temperatura"};
             miModelo = new DefaultTableModel(null, titulos);
             for (int i = 0; i < arr.length; i++) {
                 miModelo.addRow(arr[i].split(", "));
