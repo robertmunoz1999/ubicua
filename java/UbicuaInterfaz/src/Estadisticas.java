@@ -23,8 +23,8 @@ public class Estadisticas extends javax.swing.JFrame {
     /**
      * Creates new form Estadisticas
      */
-    public Integer id = null;
-    public Estadisticas(int id) {
+    public Integer id = null;//declaramos el id del cubo
+    public Estadisticas(int id) {//constructor
         initComponents();
         this.getContentPane().setBackground(Color.LIGHT_GRAY);
         this.id = id;
@@ -132,15 +132,16 @@ public class Estadisticas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        DefaultTableModel miModelo = null;
-        Graficar miGrafica = new Graficar();
+        //Boton Graficar
+        DefaultTableModel miModelo = null;//declaramos el defaulttablemodel
+        Graficar miGrafica = new Graficar();//inicializamos la grafica
         try{
-            miModelo = miGrafica.getCubeData(id);
-            jTable1.setModel(miModelo);
-            DefaultCategoryDataset dtsc = new DefaultCategoryDataset();
-            String tipoData = jComboBox1.getSelectedItem().toString();
-            JFreeChart ch;
-
+            miModelo = miGrafica.getCubeData(id);//obtenemos los datos con el id del cubo
+            jTable1.setModel(miModelo);//establecemos la tabla ya declarada
+            DefaultCategoryDataset dtsc = new DefaultCategoryDataset();//declaramos el dataset
+            String tipoData = jComboBox1.getSelectedItem().toString();//declaramos el tipo de dato
+            JFreeChart ch;//declaramos la libreria JFreeChart(para gráficas)
+            //establecemos los valores de cada columna
             for(int i = 0; i < jTable1.getRowCount(); i++){
                 if(tipoData.equals("Capacidad")){
                     dtsc.setValue(Integer.parseInt(jTable1.getValueAt(i, 2).toString()), jTable1.getValueAt(i, 1).toString(), jTable1.getValueAt(i, 6).toString());
@@ -158,7 +159,7 @@ public class Estadisticas extends javax.swing.JFrame {
                     dtsc.setValue(Integer.parseInt(jTable1.getValueAt(i, 7).toString()), jTable1.getValueAt(i, 1).toString(), jTable1.getValueAt(i, 6).toString());                
                 }
             }
-            
+            //mostramos la grafica
             ch = ChartFactory.createBarChart3D("Datos sobre el cubo solicitado: ", "Tiempo", tipoData, dtsc,PlotOrientation.HORIZONTAL, true, true, false);
             ChartPanel cp = new ChartPanel(ch);
             add(cp);

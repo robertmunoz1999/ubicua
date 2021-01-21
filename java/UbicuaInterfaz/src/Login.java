@@ -80,15 +80,15 @@ public class Login extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
         // TODO add your handling code here:
-        Cliente c = new Cliente();
-        String reg_email = jTextField1.getText();
-        String reg_password = jPasswordField1.getText();
-        String acceso=c.cuentaLogin(reg_email, reg_password);
-        if (acceso.equals("f")){
+        Cliente c = new Cliente();//inicializamos cliente
+        String reg_email = jTextField1.getText();//obtenemos el email introducido
+        String reg_password = jPasswordField1.getText();//obtenemos la contraseña introducida
+        String acceso=c.cuentaLogin(reg_email, reg_password);//obtenemos la respuesta del servidor al login(true o false)
+        if (acceso.equals("f")){//si es falso anulamos el registro momentaneamente
             showMessageDialog(null, "Usuario o contraseña incorrectos");
-        }else if(acceso.equals("t")){
-            CubosBasura cb = new CubosBasura(reg_email);
-            cb.setVisible(true);
+        }else if(acceso.equals("t")){//si es correcto se pasa a la siguiente ventana
+            CubosBasura cb = new CubosBasura(reg_email);//se inicializa la ventana con el email del usuario
+            cb.setVisible(true);//hacemos visible la ventana CubosBasura
         }
         
     }//GEN-LAST:event_jButton1MouseClicked

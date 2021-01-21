@@ -23,19 +23,19 @@ public class CubosBasura extends javax.swing.JFrame {
     /**
      * Creates new form CubosBasura
      */
-    DefaultListModel listModel;
-    String emailSesion;//inicializamos el email con el que entramos a la ventana
+    DefaultListModel listModel;//declaramos el defaultlistmodel
+    String emailSesion;//declaramos el email con el que entramos a la ventana
 
-    public CubosBasura(String email) {
+    public CubosBasura(String email) {//constructor
         try {
             initComponents();
             this.emailSesion=email;
-            jLabel2.setText("Bienvenido "+email);
-            Cliente c = new Cliente();
-            String cubos = c.consultarCubos();
-            String arr[] = cubos.split(" ");
+            jLabel2.setText("Bienvenido "+email);//ponemos mensaje de bienvenida
+            Cliente c = new Cliente();//inicializamos cliente
+            String cubos = c.consultarCubos();//obtenemos los cubos ordenados que hay en la base de datos
+            String arr[] = cubos.split(" ");//metemos los cubos en una lista
             listModel = new DefaultListModel();
-            for (int i = 0; i < arr.length; i++) {   //solo de ejemplo,hay q ue sacarlos de la BD
+            for (int i = 0; i < arr.length; i++) {//añadimos los cubos al listmodel
                 listModel.addElement(arr[i]);
             }
             jList1.setModel(listModel);
@@ -59,6 +59,7 @@ public class CubosBasura extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -96,7 +97,16 @@ public class CubosBasura extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 194, 38));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 194, 38));
+
+        jButton3.setBackground(new java.awt.Color(153, 255, 255));
+        jButton3.setText("mapa");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 194, 38));
 
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 11, 131, 27));
@@ -112,7 +122,7 @@ public class CubosBasura extends javax.swing.JFrame {
 
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);//evento de confirmacion al pulsar cerrar
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 int confirmed = JOptionPane.showConfirmDialog(null,
@@ -127,23 +137,29 @@ public class CubosBasura extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        //System.out.println(Integer.parseInt(jList1.getModel().getElementAt(jList1.getSelectedIndex())));
+        //Boton informacion:
         Info in = new Info(Integer.parseInt(jList1.getModel().getElementAt(jList1.getSelectedIndex())));
         in.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
+        //Boton estadisticas:
         Estadisticas est=new Estadisticas(Integer.parseInt(jList1.getModel().getElementAt(jList1.getSelectedIndex())));
         est.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        Mapa map = new Mapa("cubos activos");
+        map.setVisible(true);
+    }//GEN-LAST:event_jButton3MouseClicked
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

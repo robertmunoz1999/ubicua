@@ -20,26 +20,27 @@ public class Info extends javax.swing.JFrame {
     /**
      * Creates new form Info
      */
-    public Integer id = null;
+    public Integer id = null;//declaramos id
 
-    public Info(Integer id) {
+    public Info(Integer id) {//constructor
         initComponents();
         this.id = id;
         jTextField2.setText(id+"");
-        mostrarInfo();
+        mostrarInfo();//llamamos al metodo, para que se muestre al instante en el que la ventana es visible
     }
 
-    public void mostrarInfo() {
+    public void mostrarInfo() {//metodo para mostrar informacion del cubo seleccionado
             // TODO add your handling code here:
-            Cliente c = new Cliente();
-            String infoCubo=c.consultar(id);
-            String arr[] = infoCubo.split(",");
+            Cliente c = new Cliente();//inicializamos cliente
+            String infoCubo=c.consultar(id);//consultamos la informacion del cubo
+            String arr[] = infoCubo.split(",");//almacenamos la info en un array
+            //se muestra la info en la ventana
             System.out.println(infoCubo);
             jTextField3.setText(arr[0]);
-            if(arr[1].equals("t")){
+            if(arr[1].equals("t")){//si es true se selecciona la checkbox
                 jCheckBox1.setSelected(true);
             }
-            else if((arr[1].equals("f"))){
+            else if((arr[1].equals("f"))){//si es false la checkbox queda vacia
                 jCheckBox1.setSelected(false);
             }
             jTextField4.setText(arr[2]);

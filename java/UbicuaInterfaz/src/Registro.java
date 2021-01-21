@@ -77,11 +77,11 @@ public class Registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        Cliente c = new Cliente();
-        String reg_email = jTextField1.getText();
-        String reg_password = jPasswordField1.getText();
-        c.cuentaRegistro(reg_email, reg_password);
+        //Boton registrar:
+        Cliente c = new Cliente();//incializamos cliente
+        String reg_email = jTextField1.getText();//recibimos el nuevo email del cliente
+        String reg_password = jPasswordField1.getText();//recibimos la nueva contraseña del cliente
+        c.cuentaRegistro(reg_email, reg_password);//llamamos al metodo de cliente para registrar la cuenta en la base de datos
 
     }//GEN-LAST:event_jButton1MouseClicked
 

@@ -84,13 +84,13 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-
+        //si se hace click en el boton registro se hace visible la ventana registro
         Registro reg = new Registro();
         reg.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-
+        //si se hace click en el  boton login, hacemos visible la ventana login
         Login log = new Login();
         log.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked

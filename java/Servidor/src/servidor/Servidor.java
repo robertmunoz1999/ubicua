@@ -64,8 +64,15 @@ public class Servidor {
                         out.writeUTF(login);
                     } else if (sitio.toLowerCase().equals("cube")) {
                         if(arr[1].equals("*")){
-                            String infoCubo = consultarCubo(mensaje);
-                            out.writeUTF(infoCubo);//devolvemos los datos al cliente
+                            if(arr[5].equals("id")){
+                                String infoCubo = consultarCubo(mensaje);
+                                out.writeUTF(infoCubo);//devolvemos los datos al cliente
+                            }
+                            else if(arr[5].equals("deleted")){
+                                String infoCubosActivos = consultarActivos(mensaje);
+                                out.writeUTF(infoCubosActivos);//devolvemos los datos al cliente
+                            }
+                            
                         }
                         else if(arr[1].equals("id")){
                             String cubos = Cubos(mensaje);
@@ -173,8 +180,8 @@ public class Servidor {
     public static String getCubeData(String mensaje) {
         DefaultTableModel miModelo = null;
         try {
-            String titulos[] = {"Id cubo", "Referencia data", "Capacidad", "CO2", "Metano", "Humo", "Sello temporal", "Temperatura", "Voltaje"};
-            String dts[] = new String[9];
+            String titulos[] = {"Id cubo", "Referencia data", "Capacidad", "CO2", "Metano", "Humo", "Sello temporal", "Temperatura"};
+            String dts[] = new String[8];
 
             miModelo = new DefaultTableModel(null, titulos);
 
@@ -189,7 +196,8 @@ public class Servidor {
                 dts[5] = rs.getString("smoke");
                 dts[6] = rs.getString("data_timestamp");
                 dts[7] = rs.getString("temperature");
-                dts[8] = rs.getString("voltage");
+                //dts[8] = rs.getString("mq2_resistance");
+                //dts[9] = rs.getString("mq135_resistance");
                 miModelo.addRow(dts);
             }
         } catch (Exception ex) {
@@ -230,5 +238,31 @@ public class Servidor {
         return salida;
         
         
+    }
+    
+    
+    public static String consultarActivos(String mensaje) {
+        String salida = "";
+        try {
+            ResultSet rs = null;
+            Statement stmt = con.getConnection().createStatement();
+            rs = stmt.executeQuery(mensaje);
+            boolean centinela = false;
+            while (rs.next()) {
+                if (rs.wasNull() == false) {
+                    centinela = true;
+                    System.out.println(" encontrado");
+                    salida = salida + rs.getString(1).trim() + "," + rs.getString(3).trim() + "," + rs.getString(4).trim() + "," + rs.getString(6).trim() + "," + rs.getString(7).trim() + "<";
+                } else {
+                    System.out.println("no ");
+                }
+            }
+            if (centinela == false) {
+                System.out.println("no se ha encontrado ");
+            }
+        } catch (SQLException ex) {
+            System.out.println("error catch consultar cubo");
+        }
+        return salida;//devuelve una salida tipo string de la consulta, separada por comas
     }
 }
